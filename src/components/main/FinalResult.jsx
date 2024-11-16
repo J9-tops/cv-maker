@@ -11,25 +11,18 @@ const FinalResult = (props, ref) => {
     skillsData,
   } = props;
 
-  const generatePDF = () => {
-    const report = new jsPDF("p", "mm", "a4");
-    report.html(document.querySelector("#final-result")).then(() => {
-      report.save("resume.pdf");
-    });
-  };
-
   return (
     <>
-      <div
+      <main
         id="final-result"
         className={
           showResult
-            ? "w-full border border-solid border-black bg-white pt-2 font-timesNewRoman lg:w-[60%] xl:block xl:w-[40%]"
-            : "hidden w-full border border-solid border-black bg-white pt-2 font-timesNewRoman xl:block xl:w-[40%]"
+            ? "w-full border border-solid border-black bg-white pt-2 font-timesNewRoman lg:w-[60%] xl:block xl:w-[40%] print:block print:border-none"
+            : "hidden w-full border border-solid border-black bg-white pt-2 font-timesNewRoman xl:block xl:w-[40%] print:block print:border-none"
         }
       >
-        <header className="flex flex-col items-center mb-3">
-          <h1 className="text-xl font-bold text-center uppercase">
+        <header className="mb-3 flex flex-col items-center">
+          <h1 className="text-center text-xl font-bold uppercase">
             {userData.fullName}
           </h1>
           <p className="text-center">{userData.jobTitle}</p>
@@ -54,7 +47,7 @@ const FinalResult = (props, ref) => {
           </p>
         </header>
         {educationData.length >= 1 && (
-          <section className="px-3 mb-2 leading-snug font-timesNewRoman">
+          <section className="mb-2 px-3 font-timesNewRoman leading-snug">
             <h1 className="mb-1 border-b-2 border-solid border-black text-[0.8rem] font-bold uppercase">
               education
             </h1>
@@ -91,7 +84,7 @@ const FinalResult = (props, ref) => {
           </section>
         )}
         {profExperienceData.length >= 1 && (
-          <section className="px-3 mb-2 leading-snug font-timesNewRoman">
+          <section className="mb-2 px-3 font-timesNewRoman leading-snug">
             <h1 className="mb-1 border-b-2 border-solid border-black text-[0.8rem] font-bold uppercase">
               professional experience
             </h1>
@@ -143,10 +136,11 @@ const FinalResult = (props, ref) => {
             ))}
           </section>
         )}
-      </div>
+      </main>
       <button
-        className="absolute p-2 bg-red-600 left-8 top-10 h-fit w-fit rounded-xl"
-        onClick={generatePDF}
+        id="print-btn"
+        className="absolute left-8 top-10 h-fit w-fit rounded-xl bg-red-600 p-2"
+        onClick={() => window.print()}
       >
         <DownloadIcon />
       </button>

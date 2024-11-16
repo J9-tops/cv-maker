@@ -56,7 +56,7 @@ const App = () => {
   };
 
   return (
-    <div className="relative flex justify-center min-h-screen px-6 py-10 gap-x-20 bg-neutralLighterAlt">
+    <div className="relative flex min-h-screen justify-center gap-x-20 bg-neutralLighterAlt px-6 py-10">
       {!isCreateButtonClicked && <Sample />}
 
       <CreateNew

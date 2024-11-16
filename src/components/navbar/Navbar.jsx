@@ -41,8 +41,8 @@ const Navbar = (props) => {
     <nav
       className={
         showResult
-          ? "hidden w-full border border-solid border-black px-5 py-4 xl:block xl:w-[40%]"
-          : "w-full border border-solid border-black px-5 py-4 lg:w-[60%] xl:w-[40%]"
+          ? "hidden w-full border border-solid border-black px-5 py-4 xl:block xl:w-[40%] print:hidden"
+          : "w-full border border-solid border-black px-5 py-4 lg:w-[60%] xl:w-[40%] print:hidden"
       }
     >
       <Suspense fallback={<div>Loading...</div>}>
@@ -85,13 +85,10 @@ const Navbar = (props) => {
 
 Navbar.propTypes = {
   showResult: PropTypes.bool,
-  setShowResult: PropTypes.func,
-  handleShowResultToggle: PropTypes.func,
   userData: PropTypes.object,
   setUserData: PropTypes.func,
   setEducationData: PropTypes.func,
   educationData: PropTypes.array,
-  handleEducationDataCount: PropTypes.func,
 };
 
 export default Navbar;
